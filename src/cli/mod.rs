@@ -1,5 +1,5 @@
 pub(crate) mod abstraction;
-mod config;
+pub mod config;
 mod export;
 mod fix;
 mod import;
