@@ -20,3 +20,4 @@ mod rpc;
 mod telemetry;
 
 pub use surrealdb_core;
+pub use surrealdb;
