@@ -89,7 +89,7 @@ use surrealdb_core::{
 use super::resource_to_values;
 
 #[cfg(not(target_arch = "wasm32"))]
-pub(crate) mod native;
+pub mod native;
 #[cfg(target_arch = "wasm32")]
 pub(crate) mod wasm;
 

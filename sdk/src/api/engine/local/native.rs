@@ -22,6 +22,8 @@ use surrealdb_core::{dbs::Session, iam::Level, kvs::Datastore, options::EngineOp
 use tokio::sync::watch;
 use tokio_util::sync::CancellationToken;
 
+pub static DATASTORE: tokio::sync::OnceCell<Arc<Datastore>> = tokio::sync::OnceCell::const_new();
+
 impl crate::api::Connection for Db {}
 
 impl Connection for Db {
@@ -116,6 +118,8 @@ pub(crate) async fn run_router(
 	let mut vars = BTreeMap::default();
 	let mut live_queries = HashMap::new();
 	let mut session = Session::default().with_rt(true);
+
+	let _ = DATASTORE.set(kvs.clone());
 
 	let canceller = CancellationToken::new();
 
